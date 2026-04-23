@@ -14,7 +14,7 @@ export const PERSONAL = {
 export const ABOUT = {
   paragraphs: [
     "Pursuing a Master's in Information Technology at Arizona State University, I serve as an Academic Tutor helping students excel in Computer Science, Mathematics, and Statistics courses. Through structured problem sets, interactive coding sessions in Python and Java, and one-on-one mentoring, I foster strong analytical and technical foundations.",
-    "Beyond teaching, I build production-grade software — from distributed microservices and AI-augmented automation pipelines to real-time analytics platforms. I thrive at the intersection of software engineering and applied AI, always looking for ways to make systems smarter, faster, and more reliable.",
+    "Beyond teaching, I build production-grade software from distributed microservices and AI-augmented automation pipelines to real-time analytics platforms. I thrive at the intersection of software engineering and applied AI, always looking for ways to make systems smarter, faster, and more reliable.",
   ],
   highlights: [
     { icon: "🎓", label: "MS IT @ ASU" },
