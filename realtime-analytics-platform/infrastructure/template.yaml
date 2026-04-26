@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  AnalyticsEventsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: analytics_events
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: event_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: event_id
+          KeyType: HASH
+
+  IngestEventFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda_handler.ingest_event
+      Runtime: python3.11
+      CodeUri: ../backend/
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref AnalyticsEventsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /events
+            Method: post
+
+  GetEventsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda_handler.get_events
+      Runtime: python3.11
+      CodeUri: ../backend/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref AnalyticsEventsTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /events
+            Method: get
